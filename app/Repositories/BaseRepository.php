@@ -1,6 +1,8 @@
 <?php
 namespace App\Repositories;
-abstract class BaseRepository
+use BaseInterface;
+
+abstract class BaseRepository implements BaseInterface
 {
     public $model;
 
