@@ -14,8 +14,8 @@
     </select>
     <div class="form-group" >
         <label for="" >Nội dung
-            <textarea name="content" class="form-control" rows="5" cols="100" valua="{{$post->content}}" ></textarea></label>
+            <textarea name="content" class="form-control" rows="5" cols="100"  >{{$post->content}}</textarea></label>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Update</button>
     <a class="btn btn-success" href="{{route('posts.index')}}">Back</a>
 </form>
