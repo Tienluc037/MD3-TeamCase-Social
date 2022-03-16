@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestForm;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +21,7 @@ class AuthController extends Controller
         return view('backend.auth.login');
     }
 
-    public function login(Request $request)
+    public function login(RequestForm $request)
     {
         if($this->authService->login($request)){
             return view('welcome');
@@ -34,7 +35,7 @@ class AuthController extends Controller
     public function logout()
     {
         $this->authService->logout();
-        return view('welcome');
+        return view('showFormLogin');
 
     }
 }
