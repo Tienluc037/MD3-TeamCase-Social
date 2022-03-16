@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
         return [
             "content" => "required",
             "status_id" => "required",
+            'user_id'=>'required',
         ];
     }
 
@@ -34,6 +35,7 @@ class PostRequest extends FormRequest
         return [
             "content.required" => "Nội dung không được để trống.",
             "status_id.required" => "Trạng thái không được để trống.",
+            "user_id.required" => "Tên người dùng  không được để trống.",
         ];
     }
 }

@@ -30,8 +30,7 @@ class PostService extends BaseService
 
     public function update($id,$request)
     {
-        $this->postRepository->getById($id);
-        $post = new Post();
+        $post =$this->postRepository->getById($id);
         $post->content = $request->input('content');
         $post->status_id = $request->status;
         $post->user_id = $request->user;

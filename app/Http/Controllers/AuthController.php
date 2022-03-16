@@ -21,10 +21,20 @@ class AuthController extends Controller
         return view('backend.auth.login');
     }
 
+    public function showFormRegister()
+    {
+        return view('backend.auth.register');
+    }
+
+//    public function ()
+//    {
+//
+//    }
+
     public function login(RequestForm $request)
     {
         if($this->authService->login($request)){
-            return view('welcome');
+            return redirect()->route('posts.index');
         }
         else{
             Session::flash('msg','Tài khoản hoặc mật khẩu sai');
