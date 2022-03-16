@@ -15,15 +15,15 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = new Status();
-        $status->name = 'public';
+        $status->name = 'Public';
         $status->save();
 
         $status = new Status();
-        $status->name = 'only me';
+        $status->name = 'Only Me';
         $status->save();
 
         $status = new Status();
-        $status->name = 'friend';
+        $status->name = 'Friend';
         $status->save();
     }
 }

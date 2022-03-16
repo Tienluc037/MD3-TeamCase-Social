@@ -5,7 +5,7 @@
         <th>ID</th>
         <th>Content</th>
         <th>Status</th>
-        <th>User post</th>
+        <th>User Post</th>
         <th colspan="2">Action</th>
     </tr>
     </thead>
