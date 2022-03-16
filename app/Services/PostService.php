@@ -46,6 +46,6 @@ class PostService extends BaseService
 
     public function deleteById($id)
     {
-        return $this->postRepository->deleteById($id);
+        return $this->
     }
 }
