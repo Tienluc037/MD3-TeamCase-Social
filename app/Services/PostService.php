@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Repositories\PostRepository;
+use Illuminate\Support\Facades\Auth;
 
 class PostService extends BaseService
 {
@@ -21,8 +22,8 @@ class PostService extends BaseService
     {
         $post = new Post();
         $post->content = $request->input('content');
-        $post->status_id = $request->status;
-        $post->user_id = $request->user;
+        $post->status_id = $request->status ?? 1;
+        $post->user_id = Auth::user()->id;
         $post->save();
     }
 

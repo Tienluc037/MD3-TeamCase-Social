@@ -48,4 +48,10 @@ class AuthController extends Controller
         return view('showFormLogin');
 
     }
+
+    public function register(Request $request)
+    {
+        $this->authService->create($request);
+        return redirect()->route('login');
+    }
 }

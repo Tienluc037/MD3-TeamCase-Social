@@ -36,7 +36,7 @@
         {{--        </form>--}}
     </div>
     <div class="container">
-        <p style="text-align: right">Welcome Admin </p>
+        <p style="text-align: right">Welcome {{\Illuminate\Support\Facades\Auth::user()->name}} </p>
     </div>
 </header>
 
@@ -73,9 +73,10 @@
                         <h3 class="panel-title">Wall</h3>
                     </div>
                     <div class="panel-body">
-                        <form>
+                        <form action="{{route('posts.store')}}" method="post">
+                            @csrf
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Write on the wall"></textarea>
+                                <textarea class="form-control" placeholder="Write on the wall" name="content"></textarea>
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                             <div class="pull-right">
