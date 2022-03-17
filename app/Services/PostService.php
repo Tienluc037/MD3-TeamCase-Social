@@ -32,14 +32,14 @@ class PostService extends BaseService
         }
         $post->save();
 
-
     }
     public function update($id,$request)
     {
         $post =$this->postRepository->getById($id);
         $post->content = $request->input('content');
-        $post->status_id = $request->status;
-        $post->user_id = $request->user;
+        $post->image = $request->input('image');
+        $post->status_id = $request->status ?? 1;
+        $post->user_id = Auth::user()->id;
         $post->save();
 
     }
