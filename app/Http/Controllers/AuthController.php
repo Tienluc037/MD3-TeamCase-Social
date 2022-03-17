@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RequestForm;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -26,14 +27,11 @@ class AuthController extends Controller
         return view('backend.auth.register');
     }
 
-//    public function ()
-//    {
-//
-//    }
 
     public function login(RequestForm $request)
     {
         if($this->authService->login($request)){
+            toastr()->success('Welcome '. Auth::user()->name);
             return redirect()->route('posts.index');
         }
         else{
@@ -52,6 +50,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->authService->create($request);
+        toastr()->success('Đăng ký thành công');
         return redirect()->route('login');
     }
 }
