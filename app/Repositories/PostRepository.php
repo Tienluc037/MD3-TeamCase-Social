@@ -15,8 +15,8 @@ class PostRepository extends BaseRepository implements BaseInterface
         return Post::class;
     }
 
-//    public function getAll()
-//    {
-//        return $this->model::orderBy('created_at','desc')->get();
-//    }
+    public function getAll()
+    {
+        return $this->model::orderBy('created_at','desc')->get();
+    }
 }
