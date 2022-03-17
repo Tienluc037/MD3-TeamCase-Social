@@ -23,8 +23,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postService->getAll();
-        return view('welcome',compact('posts'));
-//        return view('backend.post.list',compact('posts'));
+//        return view('welcome',compact('posts'));
+        return view('backend.post.list',compact('posts'));
     }
 
     public function create()
