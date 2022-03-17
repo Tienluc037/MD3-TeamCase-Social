@@ -18,14 +18,14 @@ class PostService extends BaseService
     {
         return $this->postRepository->getAll();
 }
-//    public function store($request)
-//    {
-//        $post = new Post();
-//        $post->content = $request->input('content');
-//        $post->status_id = $request->status ?? 1;
-//        $post->user_id = Auth::user()->id;
-//        $post->save();
-//    }
+    public function store($request)
+    {
+        $post = new Post();
+        $post->content = $request->input('content');
+        $post->status_id = $request->status ?? 1;
+        $post->user_id = Auth::user()->id;
+        $post->save();
+    }
 
 
     public function update($id,$request)
