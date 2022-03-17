@@ -35,6 +35,9 @@
         {{--            </div>--}}
         {{--        </form>--}}
     </div>
+    <div class="container">
+        <p style="text-align: right">Welcome Admin </p>
+    </div>
 </header>
 
 <nav class="navbar navbar-default">
