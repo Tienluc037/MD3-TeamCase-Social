@@ -13,6 +13,8 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
+{{--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">--}}
+    @toastr_css
 </head>
 <body>
 
@@ -227,4 +229,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 </body>
+@jquery
+@toastr_js
+@toastr_render
 </html>
