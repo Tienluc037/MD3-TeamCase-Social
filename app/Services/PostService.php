@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Repositories\PostRepository;
+use Illuminate\Support\Facades\Auth;
 
 class PostService extends BaseService
 {
@@ -27,7 +28,8 @@ class PostService extends BaseService
         if($request->hasFile('image')) {
             $path = $request->file('image')->store('images','public');
             $post->image = $path;
-        }
+        $post->status_id = $request->status ?? 1;
+        $post->user_id = Auth::user()->id;
         $post->save();
     }
 

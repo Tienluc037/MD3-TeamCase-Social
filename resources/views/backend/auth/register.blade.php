@@ -145,14 +145,14 @@
             <label>Customer Email</label>
         </div>
         <div class="txt_field">
-            <input type="password" required name="password" id="password">
-            <span></span>
-            <label>Password</label>
-        </div>
-        <div class="txt_field">
             <input type="text" required name="address" id="address">
             <span></span>
             <label>Address</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" required name="password" id="password">
+            <span></span>
+            <label>Password</label>
         </div>
         <div class="txt_field">
             <input type="password" required name="confirmPassword" id="password">

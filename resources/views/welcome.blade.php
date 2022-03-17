@@ -15,6 +15,7 @@
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
 </head>
 <body>
+
 <header>
     <div class="container">
         <img src="img/logo.png" class="logo" alt="">
@@ -34,6 +35,9 @@
         {{--                </label>--}}
         {{--            </div>--}}
         {{--        </form>--}}
+    </div>
+    <div class="container">
+        <p style="text-align: right">Welcome {{\Illuminate\Support\Facades\Auth::user()->name}} </p>
     </div>
 </header>
 
@@ -70,9 +74,11 @@
                         <h3 class="panel-title">Wall</h3>
                     </div>
                     <div class="panel-body">
-                        <form>
+                        <form action="{{route('posts.store')}}" method="post">
+                            @csrf
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Write on the wall"></textarea>
+                                <textarea class="form-control" placeholder="Write on the wall"
+                                          name="content"></textarea>
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                             <div class="pull-right">
@@ -90,10 +96,7 @@
                 </div>
 
 
-
-
-
-{{--                List post--}}
+                {{--                List post--}}
                 <div class="post-s">
                     @foreach($posts as $post)
 
@@ -101,7 +104,8 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <a href="profile.html" class="post-avatar thumbnail"><img src="img/user.png" alt="">
+                                        <a href="profile.html" class="post-avatar thumbnail"><img src="img/user.png"
+                                                                                                  alt="">
                                             <div class="text-center">{{$post->user->name}}</div>
                                         </a>
                                         <div class="likes text-center"><a href="#">Follow</a></div>
@@ -114,7 +118,12 @@
                                             </div>
                                             <div class="pointer-border"></div>
                                         </div>
-                                        <p class="post-actions"><a  href="#">Comment</a>  <a class="action" href="#">Like</a> <a class="action" href="#">Share</a></p>
+                                        <p class="post-actions">
+                                            <a href="#">Comment</a>
+                                            <a class="action" href="#">Like</a>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->id == $post->user_id)
+                                                <a class="action" href="#">Delete</a></p>
+                                            @endif
                                         <div class="comment-form">
                                             <form class="form-inline">
                                                 <div class="form-group">
@@ -127,7 +136,8 @@
 
                                         <div class="comments">
                                             <div class="comment">
-                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png" alt=""></a>
+                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
+                                                                                                  alt=""></a>
                                                 <div class="comment-text">
                                                     <p>I am just going to paste in a paragraph, then we will add another
                                                         clearfix.</p>
@@ -135,7 +145,8 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="comment">
-                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png" alt=""></a>
+                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
+                                                                                                  alt=""></a>
                                                 <div class="comment-text">
                                                     <p>I am just going to paste in a paragraph, then we will add another
                                                         clearfix.</p>
@@ -146,15 +157,12 @@
                                     </div>
                                 </div>
                             </div>
-                </div>
+                        </div>
                     @endforeach
                 </div>
 
 
-
-
-
-{{--                My friend--}}
+                {{--                My friend--}}
             </div>
             <div class="col-md-4  ">
                 <div class="panel panel-default friends">

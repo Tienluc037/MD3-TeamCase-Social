@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\AuthRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService extends BaseService
 {
@@ -30,4 +32,12 @@ class AuthService extends BaseService
         Auth::logout();
     }
 
+    public function create($request)
+    {
+        $users = $request->only('name','email','address','password');
+        $users['password'] = Hash::make($users['password']);
+        $users['role_id'] = 2;
+        $user = User::create($users);
+        return $this->sendResponse($user,'Create Successful',201);
+    }
 }
