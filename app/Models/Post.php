@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     protected $table = "posts";
-    protected $fillable = ['content','status_id','user_id'];
+    protected $fillable = ['content','image','status_id','user_id'];
     public function status()
     {
         return $this->belongsTo(Status::class);
