@@ -16,8 +16,7 @@ class PostService extends BaseService
     public function getAll()
     {
         return $this->postRepository->getAll();
-    }
-
+}
     public function store($request)
     {
         $post = new Post();

@@ -19,3 +19,8 @@
     <button type="submit" class="btn btn-primary">Create</button>
     <a class="btn btn-success" href="{{route('posts.index')}}">Back</a>
 </form>
+
+
+
+
+

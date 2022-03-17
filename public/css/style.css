@@ -60,6 +60,8 @@ header .logo{
 	margin:5px;
 }
 
+
+
 .comment-form .form-group{
 	width: 90%;
 }
@@ -68,7 +70,7 @@ header .logo{
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 3px;
-	margin: 5px 0;
+	margin: 9px 0;
 	overflow: auto;
 	width:100%;
 }
@@ -156,4 +158,13 @@ footer{
   .members p{
 	padding-top: 40px;
 	}
+}
+/*.post-s {*/
+/*    !*display: inline-block;*!*/
+/*    background-color: red;*/
+/*}*/
+
+
+.action{
+margin-left: 15px;
 }
