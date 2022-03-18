@@ -160,9 +160,10 @@
                                                    href="{{route('posts.destroy',$post->id)}}">Delete</a></p>
                                             @endif
                                         <div class="comment-form">
-                                            <form class="form-inline">
+                                            <form class="form-inline" method="post" action="{{route('comments.store',$post->id)}}" >
+                                                @csrf
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="enter comment">
+                                                    <input type="text" class="form-control" placeholder="enter comment" name="comment">
                                                 </div>
                                                 <button type="submit" class="btn btn-default">Add</button>
                                             </form>
@@ -170,24 +171,17 @@
                                         <div class="clearfix"></div>
 
                                         <div class="comments">
+                                            @foreach($post->comments as $comment)
                                             <div class="comment">
+                                                <h5>{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                                 <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
                                                                                                   alt=""></a>
                                                 <div class="comment-text">
-                                                    <p>I am just going to paste in a paragraph, then we will add another
-                                                        clearfix.</p>
+                                                    <p>{{$comment->content}}</p>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <div class="comment">
-                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
-                                                                                                  alt=""></a>
-                                                <div class="comment-text">
-                                                    <p>I am just going to paste in a paragraph, then we will add another
-                                                        clearfix.</p>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
