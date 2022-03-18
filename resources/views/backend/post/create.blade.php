@@ -1,4 +1,5 @@
-<form method="post" action="{{ route('posts.store') }}"enctype="multipart/form-data">
+
+<form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
     @csrf
     <label for="">Trạng thái</label>
         <select name="status" id="status"  >
@@ -19,14 +20,15 @@
     </div>
 
     <div class="form-group">
+        <img id="blah" alt="" width="100" height="100" />
+        <input type="file" name="image" class="form-control"
+               onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
         <label for="">Image</label>
-        <input type="file" name="image" class="form-control">
-    </div><br>
+{{--        <input type="file" name="image" class="form-control">--}}
+  </div><br>
     <button type="submit" class="btn btn-primary">Create</button>
     <a class="btn btn-success" href="{{route('posts.index')}}">Back</a>
 </form>
-
-
 
 
 
