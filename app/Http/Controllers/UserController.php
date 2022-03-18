@@ -33,4 +33,10 @@ class UserController extends Controller
         toastr()->success('Cập nhật thông tin thành công');
         return redirect()->route('users.index');
     }
+
+    public function destroy($id)
+    {
+        $this->userService->deleteById($id);
+        return redirect()->route('users.index');
+    }
 }
