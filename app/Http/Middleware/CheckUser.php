@@ -17,12 +17,12 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-     if (Auth::user()->id == 2){
-         return  redirect()->route('welcome');
-     }
-     if (Auth::user()->id == 2 ){
-         return redirect()->route('admin');
-     }
+//     if (Auth::user()->id == 2){
+//         return  redirect()->route('welcome');
+//     }
+//     if (Auth::user()->id == 2 ){
+//         return redirect()->route('admin');
+//     }
         return $next($request);
     }
 }

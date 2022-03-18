@@ -133,7 +133,7 @@
     {{--        }--}}
     {{--    </script>--}}
     <div class="center">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <div class="txt_field">
             <input type="text" required name="name" id="name">
             <span></span>
