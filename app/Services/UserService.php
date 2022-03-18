@@ -29,7 +29,11 @@ class UserService extends BaseService
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->address = $request->input('address');
-        $user->password = $request->input('password');
         $user->save();
+    }
+
+    public function deleteById($id)
+    {
+        return $this->userRepository->deleteById($id);
     }
 }
