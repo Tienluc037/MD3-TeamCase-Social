@@ -151,7 +151,7 @@
                                                    href="{{route('posts.destroy',$post->id)}}">Delete</a></p>
                                             @endif
                                         <div class="comment-form">
-                                            <form class="form-inline">
+                                            <form class="form-inline" method="post" >
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" placeholder="enter comment">
                                                 </div>
