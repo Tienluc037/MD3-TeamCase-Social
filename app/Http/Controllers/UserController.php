@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,11 @@ class UserController extends Controller
         return view('backend.user.list',compact('users'));
     }
 
+    public function show($id)
+    {
+        $user = $this->userService->getById($id);
+        return view('backend.user.detail',compact('user'));
+    }
 
     public function edit($id)
     {
