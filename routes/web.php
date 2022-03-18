@@ -43,6 +43,7 @@ Route::prefix('users')->group(function (){
     Route::get('/', [UserController::class,'index'])->name('users.index');
     Route::get('edit/{id}', [UserController::class,'edit'])->name('users.edit');
     Route::post('update/{id}', [UserController::class,'update'])->name('users.update');
+    Route::get('delete/{id}',[UserController::class,'destroy'])->name('users.destroy');
 });
 
 

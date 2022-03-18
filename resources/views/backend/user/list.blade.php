@@ -6,7 +6,7 @@
         <th>Email</th>
         <th>Address</th>
         <th>Role </th>
-        <th>Action</th>
+        <th colspan="2">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +18,8 @@
             <td>{{$user->address}}</td>
             <td>{{$user->role->name}}</td>
             <td><a href="{{route('users.edit',$user->id)}}">Update</a></td>
+            <td><a style="color: red" onclick="return confirm('Are you sure?')"
+                   href="{{route('users.destroy',$user->id)}}">Delete</a></td>
         </tr>
     @endforeach
     </tbody>
