@@ -82,13 +82,31 @@
                                 <textarea class="form-control" placeholder="Write on the wall"
                                           name="content"></textarea>
                             </div>
+
+
                             <button type="submit" class="btn btn-default">Submit</button>
+
+
                             <div class="pull-right">
                                 <div class="btn-toolbar">
                                     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Text
                                     </button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Image
-                                    </button>
+
+
+
+
+
+                                    <button type="button" class="btn btn-default">
+                                        <div class="custom-file-upload">
+                                        <label for="file-upload" >
+                                            <i class="fa fa-file-image-o"></i>Image
+                                        </label>
+                                        <input  name="image" id="file-upload" type="file"/>
+                                    </div>
+                                </button>
+
+
+
                                     <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video
                                     </button>
                                 </div>
@@ -110,8 +128,11 @@
                                                                                                   alt="">
                                             <div class="text-center">{{$post->user->name}}</div>
                                         </a>
-                                        <div class="likes text-center"><a href="#">Follow</a></div>
-
+                                        <div class="likes text-center">
+                                            @if(\Illuminate\Support\Facades\Auth::user()->id != $post->user_id)
+                                                <a href="#">Follow</a>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="bubble">
@@ -124,7 +145,8 @@
                                             <a href="#">Comment</a>
                                             <a class="action" href="#">Like</a>
                                             @if(\Illuminate\Support\Facades\Auth::user()->id == $post->user_id)
-                                                <a class="action" href="#">Delete</a></p>
+                                                <a class="action" onclick="return confirm('Bạn có muốn xóa ?')"
+                                                   href="{{route('posts.destroy',$post->id)}}">Delete</a></p>
                                             @endif
                                         <div class="comment-form">
                                             <form class="form-inline">
@@ -219,7 +241,7 @@
 </section>
 <footer>
     <div class="container">
-        <p>Dobble Copyright &copy, 2015</p>
+        <p>Copyright &copy, 2022</p>
     </div>
 </footer>
 
