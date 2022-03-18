@@ -96,8 +96,7 @@
 
 
 
-
-
+{{--                                    image--}}
                                     <button type="button" class="btn btn-default">
                                         <div class="custom-file-upload">
                                         <label for="file-upload" >
@@ -106,6 +105,7 @@
                                         <input  name="image" id="file-upload" type="file"/>
                                     </div>
                                 </button>
+
 
 
 
@@ -140,7 +140,11 @@
                                         <div class="bubble">
                                             <div class="pointer">
                                                 <p>{{$post->content}}</p>
+                                                <img src="{{asset('storage/images/'.$post->image)}}" alt="" style="width: 100px; height: auto">
+
                                             </div>
+
+
                                             <div class="pointer-border"></div>
                                         </div>
                                         <p class="post-actions">
