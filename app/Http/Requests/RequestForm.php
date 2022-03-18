@@ -24,24 +24,16 @@ class RequestForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'address' => 'required',
-            'role_id' => 'required',
-            'content' => 'required',
         ];
     }
 
     public function messages()
     {
         $message = [
-            'name.required' => 'Your name can not empty ',
             'email.required' => 'Your email can not  empty',
             'password.required' => 'Your password can not empty',
-            'address.required' => 'Your address can not empty',
-            'role_id.required' => 'Your role can not empty',
-            'content.required' => 'Your content can not empty',
         ];
         return $message;
     }

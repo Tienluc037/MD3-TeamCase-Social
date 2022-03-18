@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories;
-use BaseInterface;
+use App\Repositories\impl\BaseInterface;
 
 class AuthRepository extends BaseRepository implements BaseInterface
 {
