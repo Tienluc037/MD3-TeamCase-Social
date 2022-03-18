@@ -78,15 +78,21 @@
                         <h3 class="panel-title">Wall</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="{{route('posts.store')}}" method="post">
+                        <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <textarea class="form-control" placeholder="Write on the wall"
                                           name="content"></textarea>
                             </div>
+{{--                            show img--}}
+{{--                            <div class="form-group">--}}
+{{--                                <img id="img" alt="" width="100" height="100" />--}}
+{{--                                <input type="file" name="image" class="form-control"--}}
+{{--                                       onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">--}}
+{{--                                        <input type="file" name="image" class="form-control">--}}
+{{--                            </div>--}}
 
-
-                            <button type="submit" class="btn btn-default">Submit</button>
+                                    <button type="submit" class="btn btn-default">Submit</button>
 
 
                             <div class="pull-right">
@@ -140,8 +146,7 @@
                                         <div class="bubble">
                                             <div class="pointer">
                                                 <p>{{$post->content}}</p>
-                                                <img src="{{asset('storage/images/'.$post->image)}}" alt="" style="width: 100px; height: auto">
-
+                                                <img src="{{asset('storage/'.$post->image)}}" alt="" style="width: 100px; height: auto">
                                             </div>
 
 
