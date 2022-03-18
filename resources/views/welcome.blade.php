@@ -58,7 +58,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
-                <li><a href="members.html">Members</a></li>
+                <li><a href="{{route('users.index')}}">Members</a></li>
                 @endif
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="groups.html">Groups</a></li>
