@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,16 @@ Route::middleware('checkLogin')->group(function (){
         Route::get('/delete/{id}', [PostController::class,'destroy'])->name('posts.destroy');
         Route::get('/edit/{id}',[PostController::class,'edit'])->name('posts.edit');
         Route::post('/update/{id}',[PostController::class,'update'])->name('posts.update');
+
+
+
+        Route::prefix('comments')->group(function (){
+            Route::get('/',[CommentController::class,'index'])->name('comments.index');
+            Route::post('/store/{id}',[CommentController::class,'store'])->name('comments.store');
+            Route::get('/delete/{id}',[CommentController::class,'destroy'])->name('comments.destroy');
+        });
+
+
 
 
 
