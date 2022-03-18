@@ -126,7 +126,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <a href="profile.html" class="post-avatar thumbnail"><img src="img/user.png"
+                                        <a href="{{route('users.show',\Illuminate\Support\Facades\Auth::user()->id)}}" class="post-avatar thumbnail"><img src="img/user.png"
                                                                                                   alt="">
                                             <div class="text-center">{{$post->user->name}}</div>
                                         </a>
