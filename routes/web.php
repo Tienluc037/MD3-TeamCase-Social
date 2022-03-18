@@ -42,7 +42,7 @@ Route::middleware('checkLogin')->group(function (){
 Route::prefix('users')->group(function (){
     Route::get('/', [UserController::class,'index'])->name('users.index');
     Route::get('edit/{id}', [UserController::class,'edit'])->name('users.edit');
-    Route::post('update/{id}', [UserController::class,'update'])->name('users.update')->middleware('checkRegister');
+    Route::post('update/{id}', [UserController::class,'update'])->name('users.update');
 });
 
 
