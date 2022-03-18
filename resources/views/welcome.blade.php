@@ -14,6 +14,7 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
 {{--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">--}}
+
     @toastr_css
 </head>
 <body>
@@ -78,19 +79,21 @@
                         <h3 class="panel-title">Wall</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data" id="uploadForm">
+
                             @csrf
                             <div class="form-group">
                                 <textarea class="form-control" placeholder="Write on the wall"
                                           name="content"></textarea>
                             </div>
-{{--                            show img--}}
-{{--                            <div class="form-group">--}}
+{{--?              show img--}}
+                            <div class="form-group">
 {{--                                <img id="img" alt="" width="100" height="100" />--}}
 {{--                                <input type="file" name="image" class="form-control"--}}
 {{--                                       onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">--}}
 {{--                                        <input type="file" name="image" class="form-control">--}}
-{{--                            </div>--}}
+
+                            </div>
 
                                     <button type="submit" class="btn btn-default">Submit</button>
 
@@ -102,7 +105,7 @@
 
 
 
-{{--                                    image--}}
+{{--           image--}}
                                     <button type="button" class="btn btn-default">
                                         <div class="custom-file-upload">
                                         <label for="file-upload" >
@@ -132,7 +135,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <a href="{{route('users.show',\Illuminate\Support\Facades\Auth::user()->id)}}" class="post-avatar thumbnail"><img src="img/user.png"
+                                        <a href="{{route('users.show',$post->user->id)}}" class="post-avatar thumbnail"><img src="img/user.png"
                                                                                                   alt="">
                                             <div class="text-center">{{$post->user->name}}</div>
                                         </a>
@@ -254,7 +257,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script  src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script >
 </body>
 @jquery
 @toastr_js
