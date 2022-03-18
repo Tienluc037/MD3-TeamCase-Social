@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\PostRepository;
+use App\Services\PostService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     protected $userService;
-    public function __construct(UserService $userService)
+    protected $postService;
+    public function __construct(UserService $userService, PostService $postService)
     {
         $this->userService = $userService;
+        $this->postService = $postService;
     }
 
     public function index()
@@ -23,7 +27,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->userService->getById($id);
-        return view('backend.user.detail',compact('user'));
+        $posts = $this->postService->getAll();
+        return view('backend.user.detail',compact('user','posts'));
     }
 
     public function edit($id)
