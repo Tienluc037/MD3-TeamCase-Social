@@ -22,5 +22,6 @@ class UserSeeder extends Seeder
         $user->address = "Hà nội";
         $user->role_id = 1;
         $user->save();
+        User::factory(10)->create();
     }
 }

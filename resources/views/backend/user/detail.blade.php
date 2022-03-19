@@ -1,4 +1,13 @@
 <h2>User</h2>
+<div>
+
+{{--    {{dd(\App\Models\Relation::getRelationStatus(1,$user->id)->status_id)}}--}}
+    @if(\App\Models\Relation::getRelationStatus(\Illuminate\Support\Facades\Auth::user()->id,$user->id) == 1)
+        <a href="{{route('cancel.request',$user->id)}}">Cancel Request</a>
+    @else
+        <a href="{{route('addFriend',$user->id)}}">Add Friend</a>
+    @endif
+</div>
 <table border="1" class="table">
     <thead class="thead-dark">
     <tr>
@@ -25,10 +34,10 @@
 <table border="3px">
     <thead>
     <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>status</th>
-        <th>role</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Role</th>
     </tr>
     </thead>
     <tbody>
