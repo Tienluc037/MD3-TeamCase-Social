@@ -52,6 +52,11 @@ Route::prefix('users')->group(function () {
     Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::get('delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('detail/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('add-friend/{id}',[UserController::class,'addFriend'])->name('addFriend');
+    Route::get('block/{id}',[UserController::class,'block'])->name('block');
+    Route::get('cancel-request/{id}',[UserController::class,'cancelRequest'])->name('cancel.request');
+    Route::get('accept-request/{id}',[UserController::class,'acceptRequest'])->name('accept.request');
+    Route::get('deny-request/{id}',[UserController::class,'denyRequest'])->name('deny.request');
 });
 
 
@@ -63,15 +68,5 @@ Route::middleware('checkRegister')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
 });
 
-Route::get('add-friend/{id}', function ($id) {
-    $from = Auth::user()->id;
-    $to = $id;
-    DB::table('relations')->insert(['from' => $from, 'to' => $to, 'status_id' => 1]);
-    return redirect()->route('users.show',$id);
-})->name('addFriend');
-Route::get('cancel-request/{id}', function ($id) {
-    $from = Auth::user()->id;
-    $to = $id;
-    DB::table('relations')->where(['from' => $from, 'to' => $to, 'status_id' => 1])->delete();
-    return redirect()->route('users.show',$id);
-})->name('cancel.request');
+
+
