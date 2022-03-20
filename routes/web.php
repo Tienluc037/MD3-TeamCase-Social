@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,12 +40,17 @@ Route::middleware('checkLogin')->group(function (){
             Route::post('/store/{id}',[CommentController::class,'store'])->name('comments.store');
             Route::get('/delete/{id}',[CommentController::class,'destroy'])->name('comments.destroy');
         });
-
-
-
-
-
     });
+
+
+
+
+    Route::prefix('favorites')->group(function (){
+        Route::get('favorite',[FavoriteController::class,'showToFavorite'])->name('favorites.listToFavorite');
+        Route::get('favorite/{id}',[FavoriteController::class,'addToFavorite'])->name('favorites.addToFavorite');
+        Route::get('deleteFavorite/{id}',[FavoriteController::class,'deleteToFavorite'])->name('favorites.deleteToFavorite');
+    });
+
 });
 
 

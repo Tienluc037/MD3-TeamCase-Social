@@ -65,6 +65,7 @@
                 <li><a href="groups.html">Groups</a></li>
                 <li><a href="photos.html">Photos</a></li>
                 <li><a href="{{route('logout')}}">Logout</a></li>
+                <li><a href="{{route('favorites.listToFavorite')}}">Favorite({{count(session()->get('favorite')??[])}})</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -143,6 +144,8 @@
                                             @if(\Illuminate\Support\Facades\Auth::user()->id != $post->user_id)
                                                 <a href="#">Follow</a>
                                             @endif
+                                                <td><a href="{{route('favorites.addToFavorite',$post->id)}}">Favorite2</a></td>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
@@ -162,6 +165,8 @@
                                                 <a class="action" onclick="return confirm('Bạn có muốn xóa ?')"
                                                    href="{{route('posts.destroy',$post->id)}}">Delete</a></p>
                                             @endif
+
+
                                         <div class="comment-form">
                                             <form class="form-inline" method="post" action="{{route('comments.store',$post->id)}}" >
                                                 @csrf
