@@ -22,7 +22,6 @@ class PostService extends BaseService
     {
         $post = new Post();
         $post->content = $request->input('content');
-        $post->image = $request->input('image');
         $post->status_id = $request->status ?? 1;
         $post->user_id = Auth::user()->id;
         if ($request->hasFile('image')) {

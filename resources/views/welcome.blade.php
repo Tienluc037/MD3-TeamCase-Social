@@ -14,6 +14,7 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet">
 {{--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">--}}
+
     @toastr_css
 </head>
 <body>
@@ -57,11 +58,13 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="members.html">Members</a></li>
+                @if(\Illuminate\Support\Facades\Auth::user()->id == 1)
+                <li><a href="{{route('users.index')}}">Members</a></li>
+                @endif
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="groups.html">Groups</a></li>
                 <li><a href="photos.html">Photos</a></li>
-                <li><a href="profile.html">Profile</a></li>
+                <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -76,19 +79,45 @@
                         <h3 class="panel-title">Wall</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="{{route('posts.store')}}" method="post">
+                        <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data" id="uploadForm">
+
                             @csrf
                             <div class="form-group">
                                 <textarea class="form-control" placeholder="Write on the wall"
                                           name="content"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+{{--?              show img--}}
+                            <div class="form-group">
+{{--                                <img id="img" alt="" width="100" height="100" />--}}
+{{--                                <input type="file" name="image" class="form-control"--}}
+{{--                                       onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">--}}
+{{--                                        <input type="file" name="image" class="form-control">--}}
+
+                            </div>
+
+                                    <button type="submit" class="btn btn-default">Submit</button>
+
+
                             <div class="pull-right">
                                 <div class="btn-toolbar">
                                     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Text
                                     </button>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Image
-                                    </button>
+
+
+
+{{--           image--}}
+                                    <button type="button" class="btn btn-default">
+                                        <div class="custom-file-upload">
+                                        <label for="file-upload" >
+                                            <i class="fa fa-file-image-o"></i>Image
+                                        </label>
+                                        <input  name="image" id="file-upload" type="file"/>
+                                    </div>
+                                </button>
+
+
+
+
                                     <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video
                                     </button>
                                 </div>
@@ -106,30 +135,38 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <a href="profile.html" class="post-avatar thumbnail"><img src="img/user.png"
+                                        <a href="{{route('users.show',$post->user->id)}}" class="post-avatar thumbnail"><img src="img/user.png"
                                                                                                   alt="">
                                             <div class="text-center">{{$post->user->name}}</div>
                                         </a>
-                                        <div class="likes text-center"><a href="#">Follow</a></div>
-
+                                        <div class="likes text-center">
+                                            @if(\Illuminate\Support\Facades\Auth::user()->id != $post->user_id)
+                                                <a href="#">Follow</a>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="bubble">
                                             <div class="pointer">
                                                 <p>{{$post->content}}</p>
+                                                <img src="{{asset('storage/'.$post->image)}}" alt="" style="width: 100px; height: auto">
                                             </div>
+
+
                                             <div class="pointer-border"></div>
                                         </div>
                                         <p class="post-actions">
                                             <a href="#">Comment</a>
                                             <a class="action" href="#">Like</a>
                                             @if(\Illuminate\Support\Facades\Auth::user()->id == $post->user_id)
-                                                <a class="action" href="#">Delete</a></p>
+                                                <a class="action" onclick="return confirm('Bạn có muốn xóa ?')"
+                                                   href="{{route('posts.destroy',$post->id)}}">Delete</a></p>
                                             @endif
                                         <div class="comment-form">
-                                            <form class="form-inline">
+                                            <form class="form-inline" method="post" action="{{route('comments.store',$post->id)}}" >
+                                                @csrf
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="enter comment">
+                                                    <input type="text" class="form-control" placeholder="enter comment" name="comment">
                                                 </div>
                                                 <button type="submit" class="btn btn-default">Add</button>
                                             </form>
@@ -137,24 +174,17 @@
                                         <div class="clearfix"></div>
 
                                         <div class="comments">
+                                            @foreach($post->comments as $comment)
                                             <div class="comment">
+                                                <h5>{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                                 <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
                                                                                                   alt=""></a>
                                                 <div class="comment-text">
-                                                    <p>I am just going to paste in a paragraph, then we will add another
-                                                        clearfix.</p>
+                                                    <p>{{$comment->content}}</p>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <div class="comment">
-                                                <a href="#" class="comment-avatar pull-left"><img src="img/user.png"
-                                                                                                  alt=""></a>
-                                                <div class="comment-text">
-                                                    <p>I am just going to paste in a paragraph, then we will add another
-                                                        clearfix.</p>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +249,7 @@
 </section>
 <footer>
     <div class="container">
-        <p>Dobble Copyright &copy, 2015</p>
+        <p>Copyright &copy, 2022</p>
     </div>
 </footer>
 
@@ -227,7 +257,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script  src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script >
 </body>
 @jquery
 @toastr_js

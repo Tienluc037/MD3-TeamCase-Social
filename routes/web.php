@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +32,34 @@ Route::middleware('checkLogin')->group(function (){
         Route::get('/edit/{id}',[PostController::class,'edit'])->name('posts.edit');
         Route::post('/update/{id}',[PostController::class,'update'])->name('posts.update');
 
+
+
+        Route::prefix('comments')->group(function (){
+            Route::get('/',[CommentController::class,'index'])->name('comments.index');
+            Route::post('/store/{id}',[CommentController::class,'store'])->name('comments.store');
+            Route::get('/delete/{id}',[CommentController::class,'destroy'])->name('comments.destroy');
+        });
+
+
+
+
+
     });
 });
+
+
+
+Route::prefix('users')->group(function (){
+    Route::get('/', [UserController::class,'index'])->name('users.index');
+    Route::get('edit/{id}', [UserController::class,'edit'])->name('users.edit');
+    Route::post('update/{id}', [UserController::class,'update'])->name('users.update');
+    Route::get('delete/{id}',[UserController::class,'destroy'])->name('users.destroy');
+    Route::get('detail/{id}',[UserController::class,'show'])->name('users.show');
+});
+
+
+
+
 Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('logout',[AuthController::class,'logout'])->name('logout');

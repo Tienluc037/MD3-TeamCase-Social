@@ -82,6 +82,7 @@ header .logo{
 .comment-avatar img{
 	width: 40px;
 	margin-right: 5px;
+
 }
 
 .friends li{
@@ -131,6 +132,7 @@ header .logo{
 
 .photos img{
 	width:100%;
+
 }
 
 footer{
@@ -168,3 +170,23 @@ footer{
 .action{
 margin-left: 15px;
 }
+
+
+input[type="file"] {
+    display: none;
+
+}
+
+
+/*image*/
+.custom-file-upload {
+    /*border: 1px solid #8c2e2e;*/
+    display: inline-block;
+    width: 50px;
+    height: 17px;
+    cursor: pointer;
+    /*color: #6b0a0a;*/
+font-size: 12px
+}
+
+

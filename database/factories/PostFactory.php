@@ -17,7 +17,7 @@ class PostFactory extends Factory
     {
         return [
             'content' => $this->faker->text(),
-            'image'=>$this->faker->file(),
+            'image'=>$this->faker->text(),
             'user_id' => User::all()->random()->id,
             'status_id'=>Status::all()->random()->id
         ];
