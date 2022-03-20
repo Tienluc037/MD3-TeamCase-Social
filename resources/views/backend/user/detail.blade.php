@@ -13,6 +13,9 @@
         @endif
     @elseif(\App\Models\Relation::getRelationStatus(\Illuminate\Support\Facades\Auth::user()->id,$user->id) == 2)
         <p>Friend</p>
+        <button><a href="{{route('block',$user->id)}}">Block</a></button>
+    @elseif(\App\Models\Relation::getRelationStatus(\Illuminate\Support\Facades\Auth::user()->id,$user->id) == 3)
+        <p>Blocked</p>
     @else
         <button><a href="{{route('addFriend',$user->id)}}">Add Friend</a></button>
 

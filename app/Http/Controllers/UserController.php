@@ -86,4 +86,11 @@ class UserController extends Controller
         return redirect()->route('users.show', $id);
     }
 
+    public function block($id)
+    {
+        $from = Auth::user()->id;
+        $to = $id;
+        DB::table('relations')->where(['from' => $from, 'to' => $to, 'status_id' => 1])->update(['status_id' => 3]);
+        return redirect()->route('users.show', $id);
+    }
 }
