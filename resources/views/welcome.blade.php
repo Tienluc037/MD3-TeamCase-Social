@@ -104,7 +104,7 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="groups.html">Groups</a></li>
                 <li><a href="photos.html">Photos</a></li>
-{{--                <li><a href="{{route('logout')}}">Logout</a></li>--}}
+                <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
 
 

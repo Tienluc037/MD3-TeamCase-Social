@@ -11,13 +11,19 @@ class Relation extends Model
 
     public static function getRelationStatus($from,$to)
     {
-        $relation =  Relation::where('from',$from)->where('to',$to)->first() ;
+        $relation =  Relation::where('from',$from)->where('to',$to)->first() ?? Relation::where('from',$to)->where('to',$from)->first()  ;
 
         if ($relation){
-            return $relation->status_id;
+            return $relation->status_id ;
         }
         else{
             return 0 ;
         }
+    }
+
+    public static function getRelationship($from,$to)
+    {
+        return Relation::where('from',$from)->where('to',$to)->first() ?? Relation::where('from',$to)->where('to',$from)->first();
+
     }
 }
