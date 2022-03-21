@@ -103,7 +103,7 @@
                 @endif
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="groups.html">Groups</a></li>
-                <li><a href="photos.html">Photos</a></li>
+                <li><a href="{{route('favorites.listToFavorite')}}">Favorite({{count(session()->get('favorite')??[])}})</a></li>
                 <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>
 
@@ -211,6 +211,7 @@
                                             @if(\Illuminate\Support\Facades\Auth::user()->id != $post->user_id)
                                                 <a href="#">Follow</a>
                                             @endif
+                                                <a href="{{route("favorites.addToFavorite",$post->id)}}">Favorite</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
