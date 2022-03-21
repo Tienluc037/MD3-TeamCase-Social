@@ -1,6 +1,8 @@
 <?php
 namespace App\Repositories;
-class AuthRepository extends BaseRepository
+use App\Repositories\impl\BaseInterface;
+
+class AuthRepository extends BaseRepository implements BaseInterface
 {
 
     public function getModel()
